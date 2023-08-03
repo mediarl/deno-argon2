@@ -7,97 +7,71 @@ const hashed =
 	"$argon2i$v=19$m=4096,t=3,p=1$i8Pd309cCOP75oN8vz8FHA$qUk1NgsxOmz3nWc54jyuOnr+3hHbZz3k0Sb13id7Ai8";
 
 Deno.bench({
-	name: "hash 100 times",
+	name: "hash",
+	group: "hashing",
+	baseline: true,
 	async fn() {
-		await hash(
-			password,
-		);
+		await hash(password);
 	},
 });
 
 Deno.bench({
-	name: "hash 100 times with random salt",
-	async fn() {
+	name: "hash with random salt",
+	group: "hashing",
+	async fn(b) {
 		const salt = crypto.getRandomValues(
 			new Uint8Array(Math.max(8, Math.random() * 32)),
 		);
-		// handler.start();
-		await hash(
-			password,
-			{ salt },
-		);
-		// handler.stop();
+		b.start();
+		await hash(password, { salt });
+		b.end();
 	},
 });
 
 Deno.bench({
-	name: "hash 100 times with random data, secret and salt",
-	async fn() {
+	name: "hash with random data, secret and salt",
+	group: "hashing",
+	async fn(b) {
 		const salt = crypto.getRandomValues(
 			new Uint8Array(Math.max(8, Math.random() * 32)),
 		);
 		const secret = crypto.getRandomValues(
 			new Uint8Array(Math.max(8, Math.random() * 32)),
 		);
-		const data = {
-			hashedAt: Date.now(),
-		};
-		// handler.start();
-		await hash(
-			password,
-			{
-				salt,
-				secret,
-				data,
-			},
-		);
-		// handler.stop();
+		const data = { hashedAt: Date.now() };
+		b.start();
+		await hash(password, { salt, secret, data });
+		b.end();
 	},
 });
 
 Deno.bench({
-	name: "hash 100 times with memoryCost set at 1024",
+	name: "hash with memoryCost set at 1024",
+	group: "hashing",
 	async fn() {
-		await hash(
-			password,
-			{
-				memoryCost: 1024,
-			},
-		);
+		await hash(password, { memoryCost: 1024 });
 	},
 });
 
 Deno.bench({
-	name: "hash 100 times with timeCost set at 10",
+	name: "hash with timeCost set at 10",
+	group: "hashing",
 	async fn() {
-		await hash(
-			password,
-			{
-				timeCost: 6,
-			},
-		);
+		await hash(password, { timeCost: 6 });
 	},
 });
 
 Deno.bench({
-	name: "hash 100 times with 16 lanes on sequential mode",
+	name: "hash with 16 lanes on sequential mode",
+	group: "hashing",
 	async fn() {
-		await hash(
-			password,
-			{
-				threadMode: ThreadMode.Sequential,
-				lanes: 16,
-			},
-		);
+		await hash(password, { threadMode: ThreadMode.Sequential, lanes: 16 });
 	},
 });
 
 Deno.bench({
-	name: "verify 100 times",
+	name: "verify",
 	async fn() {
-		await verify(
-			hashed,
-			password,
-		);
+		await verify(hashed, password);
 	},
 });

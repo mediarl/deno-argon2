@@ -26,7 +26,7 @@ jobs:
       - name: Install Deno
         uses: denoland/setup-deno@v1
         with:
-          deno-version: "~1.35"
+          deno-version: v1.x
 
       - name: Log versions
         run: |
