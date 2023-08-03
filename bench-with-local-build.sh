@@ -26,4 +26,4 @@ else
     sed -i '' "s/$PTN_BEFORE/$PTN_AFTER/g" lib/internal.ts
 fi
 
-deno bench --allow-read --allow-write --allow-ffi --allow-run --allow-env --unstable benches/
+deno bench --allow-read --allow-write --allow-ffi --allow-run --allow-env --allow-net=deno.land --unstable benchmarks/
