@@ -1,4 +1,4 @@
-import { hash, ThreadMode, Variant, Version } from "../lib/mod.ts";
+import { hash, ThreadMode, Variant, Version } from "argon2_ffi";
 
 const salt = crypto.getRandomValues(
 	new Uint8Array(20),

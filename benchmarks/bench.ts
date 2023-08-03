@@ -1,4 +1,4 @@
-import { hash, ThreadMode, verify } from "../lib/mod.ts";
+import { hash, ThreadMode, verify } from "argon2_ffi";
 import {
 	compare as bcryptCompare,
 	genSalt as bcryptGenSalt,

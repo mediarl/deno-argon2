@@ -1,6 +1,6 @@
 import { assertThrows } from "std/assert/mod.ts";
 
-import { hash, Variant } from "../lib/mod.ts";
+import { hash, Variant } from "argon2_ffi";
 import { assertArgon2Encoded } from "../lib/testing.ts";
 
 const password =

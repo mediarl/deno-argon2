@@ -8,6 +8,7 @@
 		"build": "cargo build --release"
 	},
 	"imports": {
+		"argon2_ffi": "./mod.ts",
 		"std/": "https://deno.land/std@0.196.0/"
 	},
 	"fmt": {

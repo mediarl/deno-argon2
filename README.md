@@ -23,7 +23,7 @@ See [`benchmarks/`](benchmarks/) folder for more details.
   10.24x faster than bcrypt hash with random salt
 - verify
   \
-  2x faster than bcrypt verify
+  2.04x faster than bcrypt verify
 
 > Benchmarks are run on a MacBook Pro (16-inch, 2019) with 2.6 GHz Hexa-Core
 > Intel i7-9750H and 16 GB 2666 MHz DDR4.
@@ -46,7 +46,7 @@ In case of an error, all methods of this library will throw an
 
 ```ts
 import { assert } from "https://deno.land/std/testing/asserts.ts";
-import { hash, verify } from "https://deno.land/x/argon2_ffi/lib/mod.ts";
+import { hash, verify } from "https://deno.land/x/argon2_ffi/mod.ts";
 
 const hash = await hash("test");
 
@@ -56,7 +56,7 @@ assert(await verify(hash, "test"));
 #### Testing
 
 ```ts
-import { Variant } from "https://deno.land/x/argon2_ffi/lib/mod.ts";
+import { Variant } from "https://deno.land/x/argon2_ffi/mod.ts";
 import { assertArgon2Encoded } from "https://deno.land/x/argon2_ffi/lib/testing.ts";
 
 Deno.test("User#password should be an argon2id variant password", async () => {
@@ -99,7 +99,7 @@ The library automatically downloads the static library. It requires
       --allow-net \
       --allow-ffi \
       --unstable \
-      lib/mod.ts
+      mod.ts
     ```
 
 </details>

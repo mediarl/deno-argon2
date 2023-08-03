@@ -1,6 +1,6 @@
 import { assert, assertEquals, assertRejects } from "std/assert/mod.ts";
 
-import { hash, Variant, verify, Version } from "../lib/mod.ts";
+import { hash, Variant, verify, Version } from "argon2_ffi";
 
 const password =
 	"2gnF!WAcyhp#kB@tcYQa2$A%P64jEmXY!@8n2GSH$GggfgGfP*qH!EWwDaB%5mdB6pW2fK!KD@YNjvqwREfRCCAPc54c5@Sk";
