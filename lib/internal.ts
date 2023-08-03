@@ -5,7 +5,7 @@ import { dlopen, type FetchOptions } from "./deps.ts";
 const FETCH_OPTIONS: FetchOptions = {
   name: "deno_argon2",
   url:
-    `https://github.com/fdionisi/deno-argon2/releases/download/v${version()}/`,
+    `https://github.com/felix-schindler/deno-argon2/releases/download/v${version()}/`,
   cache: "use",
 };
 
@@ -39,15 +39,19 @@ const encoder = new TextEncoder();
 const decoder = new TextDecoder();
 
 function readAndFreeBuffer(ptr: Deno.PointerValue): Uint8Array {
-  const ptrView = new Deno.UnsafePointerView(ptr);
-  const len = new DataView(ptrView.getArrayBuffer(4)).getUint32(0);
+  if (ptr !== null) {
+    const ptrView = new Deno.UnsafePointerView(ptr);
+    const len = new DataView(ptrView.getArrayBuffer(4)).getUint32(0);
 
-  const buf = new Uint8Array(len);
-  ptrView.copyInto(buf, 4);
+    const buf = new Uint8Array(len);
+    ptrView.copyInto(buf, 4);
 
-  lib.symbols.free_buf(ptr, len + 4);
+    lib.symbols.free_buf(ptr, len + 4);
 
-  return buf;
+    return buf;
+  }
+
+  return new Uint8Array();
 }
 
 export async function hash(

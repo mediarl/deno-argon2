@@ -1,16 +1,16 @@
-import { assertThrows } from "https://deno.land/std@0.92.0/testing/asserts.ts";
+import { assertThrows } from "std/assert/mod.ts";
 
 import { hash, Variant } from "../lib/mod.ts";
 import { assertArgon2Encoded } from "../lib/testing.ts";
 
-let password =
+const password =
   "2gnF!WAcyhp#kB@tcYQa2$A%P64jEmXY!@8n2GSH$GggfgGfP*qH!EWwDaB%5mdB6pW2fK!KD@YNjvqwREfRCCAPc54c5@Sk";
 
-let hashed1 =
+const hashed1 =
   "$argon2i$v=19$m=4096,t=3,p=1$i8Pd309cCOP75oN8vz8FHA$qUk1NgsxOmz3nWc54jyuOnr+3hHbZz3k0Sb13id7Ai8";
-let hashed2 =
+const hashed2 =
   "$argon2id$v=16$m=4096,t=10,p=1$i8Pd309cCOP75oN8vz8FHA$qUk1NgsxOmz3nWc54jyuOnr+3hHbZz3k0Sb13id7Ai8";
-let hashed3 =
+const hashed3 =
   "$argon2d$v=16$m=8192,t=10,p=3$i8Pd309cCOP75oN8vz8FHA$qUk1NgsxOmz3nWc54jyuOnr+3hHbZz3k0Sb13id7Ai8";
 
 await hash("");
@@ -18,7 +18,7 @@ await hash("");
 Deno.test({
   name: "assertion testing functionality",
   async fn() {
-    let hashed = await hash(password);
+    const hashed = await hash(password);
 
     assertArgon2Encoded(hashed);
   },
@@ -68,8 +68,8 @@ Deno.test({
 Deno.test({
   name: "assertion testing failure with non argon2 alike strings",
   fn() {
-    let start = Date.now();
-    let decoder = new TextDecoder();
+    const start = Date.now();
+    const decoder = new TextDecoder();
     while (Date.now() - start < 1000) {
       assertThrows(() => {
         assertArgon2Encoded(

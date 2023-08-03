@@ -1,11 +1,11 @@
 import { hash, ThreadMode, Variant, Version } from "../lib/dev.ts";
 
-let salt = crypto.getRandomValues(
+const salt = crypto.getRandomValues(
   new Uint8Array(20),
 );
 
-let encoder = new TextEncoder();
-let secret = encoder.encode("my-super-secret");
+const encoder = new TextEncoder();
+const secret = encoder.encode("my-super-secret");
 
 console.log(
   await hash("test", {

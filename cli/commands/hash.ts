@@ -1,9 +1,9 @@
 import { argon2, Command } from "../deps.ts";
 import { readStdin } from "../util.ts";
 
-let encoder = new TextEncoder();
+const encoder = new TextEncoder();
 
-export let hash = new Command()
+export const hash = new Command()
   .version(argon2.version())
   .description("Hash a new password or verify an already existing one.")
   .option("-s, --salt <arg:string>", "")
@@ -26,6 +26,7 @@ export let hash = new Command()
       case "parallel": {
         return argon2.ThreadMode.Parallel;
       }
+      // deno-lint-ignore no-empty
       case undefined: {}
       default: {
         throw new Error(
@@ -44,6 +45,7 @@ export let hash = new Command()
       case argon2.Variant.Argon2id: {
         return value;
       }
+      // deno-lint-ignore no-empty
       case undefined: {}
       default: {
         throw new Error(
@@ -67,7 +69,7 @@ export let hash = new Command()
     }
   })
   .action(async (options) => {
-    let password = await readStdin();
+    const password = await readStdin();
 
     console.log(
       await argon2.hash(password, {

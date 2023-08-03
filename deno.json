@@ -1,0 +1,17 @@
+{
+  "lock": false,
+  "tasks": {
+    "ok": "deno fmt --check && deno lint",
+    "test": "./test-with-local-build.sh",
+    "bench": "./bench-with-local-build.sh",
+    "build": "cargo build --release"
+  },
+  "imports": {
+    "std/": "https://deno.land/std@0.196.0/"
+  },
+  "fmt": {
+    "exclude": [
+      "./target/"
+    ]
+  }
+}

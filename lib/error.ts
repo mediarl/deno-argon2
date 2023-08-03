@@ -8,7 +8,7 @@ export class Argon2Error extends Error {
   constructor(
     public readonly type: Argon2ErrorType,
     message: string,
-    public readonly originalError?: any,
+    public readonly originalError?: unknown,
   ) {
     super(message);
   }

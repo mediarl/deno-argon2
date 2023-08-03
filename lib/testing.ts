@@ -1,4 +1,4 @@
-import { assert } from "https://deno.land/std@0.92.0/testing/asserts.ts";
+import { assert } from "std/assert/mod.ts";
 
 import { Variant, Version } from "./common.ts";
 
@@ -14,17 +14,17 @@ export function assertArgon2Encoded(
   password: string,
   options: Partial<AssertArgon2EncodedOptions> = {},
 ): asserts password {
-  let variant = options.variant ? options.variant : "argon2(i|d|id)";
+  const variant = options.variant ? options.variant : "argon2(i|d|id)";
 
-  let version = options.version ? options.version : "(16|19)";
+  const version = options.version ? options.version : "(16|19)";
 
-  let memoryCost = options.memoryCost ? options.memoryCost : "([0-9])+";
+  const memoryCost = options.memoryCost ? options.memoryCost : "([0-9])+";
 
-  let timeCost = options.timeCost ? options.timeCost : "([0-9])+";
+  const timeCost = options.timeCost ? options.timeCost : "([0-9])+";
 
-  let lanes = options.lanes ? options.lanes : "([0-9])+";
+  const lanes = options.lanes ? options.lanes : "([0-9])+";
 
-  let rx = new RegExp(
+  const rx = new RegExp(
     `^\\$${variant}\\$v=${version}\\$m=${memoryCost},t=${timeCost},p=${lanes}\\$.+$`,
   );
 

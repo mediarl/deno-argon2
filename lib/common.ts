@@ -1,4 +1,4 @@
-export let MIN_SALT_SIZE = 8;
+export const MIN_SALT_SIZE = 8;
 
 export enum Variant {
   Argon2i = "argon2i",
@@ -16,6 +16,7 @@ export enum ThreadMode {
   Parallel,
 }
 
+// deno-lint-ignore ban-types
 export interface HashOptions<T extends {} = {}> {
   salt: Uint8Array;
   secret: Uint8Array;
@@ -30,5 +31,5 @@ export interface HashOptions<T extends {} = {}> {
 }
 
 export function version() {
-  return "0.9.2";
+  return "1.0.0";
 }
