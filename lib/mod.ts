@@ -45,10 +45,10 @@ export * from "./error.ts";
  * @param options.timeCost The amount of computation realized and therefore the execution time, given in number of iterations. **Default**: 3
  */
 export function hash(
-  password: string,
-  options: Partial<HashOptions> = {},
+	password: string,
+	options: Partial<HashOptions> = {},
 ) {
-  return internal.hash(password, options);
+	return internal.hash(password, options);
 }
 
 /**
@@ -57,8 +57,8 @@ export function hash(
  * @param password
  */
 export function verify(
-  hash: string,
-  password: string,
+	hash: string,
+	password: string,
 ) {
-  return internal.verify(hash, password);
+	return internal.verify(hash, password);
 }

@@ -1,26 +1,26 @@
-import { hash, ThreadMode, Variant, Version } from "../lib/dev.ts";
+import { hash, ThreadMode, Variant, Version } from "../lib/mod.ts";
 
 const salt = crypto.getRandomValues(
-  new Uint8Array(20),
+	new Uint8Array(20),
 );
 
 const encoder = new TextEncoder();
 const secret = encoder.encode("my-super-secret");
 
 console.log(
-  await hash("test", {
-    salt,
-    secret,
-    variant: Variant.Argon2id,
-    version: Version.V13,
-    memoryCost: 8192,
-    timeCost: 10,
-    threadMode: ThreadMode.Parallel,
-    lanes: 4,
-    hashLength: 32,
-    data: {
-      hashedAt: Date.now(),
-      requestId: "a00d22c0-4681-4351-8c8f-6f02a42dd941",
-    },
-  }),
+	await hash("test", {
+		salt,
+		secret,
+		variant: Variant.Argon2id,
+		version: Version.V13,
+		memoryCost: 8192,
+		timeCost: 10,
+		threadMode: ThreadMode.Parallel,
+		lanes: 4,
+		hashLength: 32,
+		data: {
+			hashedAt: Date.now(),
+			requestId: "a00d22c0-4681-4351-8c8f-6f02a42dd941",
+		},
+	}),
 );

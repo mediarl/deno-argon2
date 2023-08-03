@@ -1,19 +1,19 @@
 export enum Argon2ErrorType {
-  UnmeetPermission = "UnmeetPermission",
-  InvalidInput = "InvalidInput",
-  Native = "Native",
+	UnmeetPermission = "UnmeetPermission",
+	InvalidInput = "InvalidInput",
+	Native = "Native",
 }
 
 export class Argon2Error extends Error {
-  constructor(
-    public readonly type: Argon2ErrorType,
-    message: string,
-    public readonly originalError?: unknown,
-  ) {
-    super(message);
-  }
+	constructor(
+		public readonly type: Argon2ErrorType,
+		message: string,
+		public readonly originalError?: unknown,
+	) {
+		super(message);
+	}
 
-  get name() {
-    return `Argon2Error(${this.type})`;
-  }
+	get name() {
+		return `Argon2Error(${this.type})`;
+	}
 }

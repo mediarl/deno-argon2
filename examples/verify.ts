@@ -1,6 +1,6 @@
-import { verify } from "../lib/dev.ts";
+import { verify } from "../lib/mod.ts";
 
 const hash =
-  "$argon2i$v=19$m=4096,t=3,p=1$AQIDBAUGBwg$u87PDHPaaimrdwCIQSwMxRQgjo22ufjWoL3urtrePU0";
+	"$argon2i$v=19$m=4096,t=3,p=1$AQIDBAUGBwg$u87PDHPaaimrdwCIQSwMxRQgjo22ufjWoL3urtrePU0";
 
 console.log(await verify(hash, "test"));

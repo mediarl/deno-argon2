@@ -47,9 +47,9 @@ import { Variant } from "https://deno.land/x/argon2/lib/mod.ts";
 import { assertArgon2Encoded } from "https://deno.land/x/argon2/lib/testing.ts";
 
 Deno.test("User#password should be an argon2id variant password", async () => {
-  assertArgon2Encoded(user.password, {
-    variant: Variant.Argon2id,
-  });
+	assertArgon2Encoded(user.password, {
+		variant: Variant.Argon2id,
+	});
 });
 ```
 
