@@ -1,26 +1,38 @@
 # Argon2 for Deno
 
-[Argon2](https://github.com/P-H-C/phc-winner-argon2) encryption library for
-[Deno](https://deno.land).
+This repository is a continuation of
+[fdionisi/deno-argon2](https://github.com/fdionisi/deno-argon2), which was no
+longer actively maintained.
 
-It uses [rust-argon2](https://github.com/sru-systems/rust-argon2) under the
-hood.
+[Argon2](https://github.com/P-H-C/phc-winner-argon2) hashing library for
+[Deno](https://deno.land). It uses
+[rust-argon2](https://github.com/sru-systems/rust-argon2) via
+[Deno FFI](https://deno.land/manual@v1.30.0/runtime/ffi_api), which requires
+Deno v1.30.0 or higher.
 
-## Compatibility table
+## Benchmarks
 
-| Library version | Deno Version |
-| --------------- | ------------ |
-| 0.6.0           | 1.0.0-1.0.3  |
-| 0.7.0           | 1.0.5        |
-| 0.8.0           | 1.2.3        |
-| 0.9.0           | 1.8.3        |
-| 1.0.0           | 1.35.0       |
+See [benchmarks/](benchmarks/) folder for more details.
+
+- hash
+  \
+  1.02x faster than bcrypt hash
+- hash with random salt
+  \
+  10.24x faster than bcrypt hash with random salt
+- verify
+  \
+  2x faster than bcrypt verify
+
+> Benchmarks are run on a MacBook Pro (16-inch, 2019) with 2.6 GHz Hexa-Core
+> Intel i7-9750H and 16 GB 2666 MHz DDR4.
 
 ## API
 
-- `hash(password: string, options?: HashOptions): Promise<string>`
-
-- `verify(hash: string, password: string): Promise<boolean>`
+```ts
+hash(password: string, options?: HashOptions): Promise<string>
+verify(hash: string, password: string): Promise<boolean>
+```
 
 ### Error handling
 
@@ -33,9 +45,9 @@ In case of error, all methods of this library will throw an
 
 ```ts
 import { assert } from "https://deno.land/std/testing/asserts.ts";
-import { hash, verify } from "https://deno.land/x/argon2/lib/mod.ts";
+import { hash, verify } from "https://deno.land/x/argon2_ffi/lib/mod.ts";
 
-let hash = await hash("test");
+const hash = await hash("test");
 
 assert(await verify(hash, "test"));
 ```
@@ -43,8 +55,8 @@ assert(await verify(hash, "test"));
 #### Testing
 
 ```ts
-import { Variant } from "https://deno.land/x/argon2/lib/mod.ts";
-import { assertArgon2Encoded } from "https://deno.land/x/argon2/lib/testing.ts";
+import { Variant } from "https://deno.land/x/argon2_ffi/lib/mod.ts";
+import { assertArgon2Encoded } from "https://deno.land/x/argon2_ffi/lib/testing.ts";
 
 Deno.test("User#password should be an argon2id variant password", async () => {
 	assertArgon2Encoded(user.password, {
@@ -65,7 +77,7 @@ The library can be installed as a CLI tool via `deno install`.
     deno install \
       -A \
       --unstable \
-      argon2 https://deno.land/x/argon2/cli/argon2.ts
+      argon2 https://deno.land/x/argon2_ffi/cli/argon2.ts
     ```
 
 </details>
@@ -76,7 +88,7 @@ After install run `--help` to inspect all possible commands.
 
 The library automatically downloads the static library and calls the static
 library's functions via FFI(Foreign Function Interface) API
-([Deno: ffi docs](https://deno.land/manual@v1.35.0/runtime/ffi_api)) and it
+([Deno: ffi docs](https://deno.land/manual@v1.30.0/runtime/ffi_api)) and it
 requires `--allow-read`, `--allow-write`, `--allow-net` and `--allow-ffi`.
 
 <details>
