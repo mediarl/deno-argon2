@@ -5,20 +5,27 @@ This repository is a continuation of
 longer actively maintained.
 
 [Argon2](https://github.com/P-H-C/phc-winner-argon2) hashing library for
-[Deno](https://deno.land). It uses [rust-argon2](https://github.com/sru-systems/rust-argon2) via [Deno FFI](https://deno.land/manual@v1.30.0/runtime/ffi_api), which requires Deno v1.30.0 or higher.
+[Deno](https://deno.land). It uses
+[rust-argon2](https://github.com/sru-systems/rust-argon2) via
+[Deno FFI](https://deno.land/manual@v1.30.0/runtime/ffi_api), which requires
+Deno v1.30.0 or higher.
 
 ## Benchmarks
 
 See [benchmarks/](benchmarks/) folder for more details.
 
-- hash\
-	1.02x faster than bcrypt hash
-- hash with random salt\
-	10.24x faster than bcrypt hash with random salt
-- verify\
-	2x faster than bcrypt verify
+- hash
+  \
+  1.02x faster than bcrypt hash
+- hash with random salt
+  \
+  10.24x faster than bcrypt hash with random salt
+- verify
+  \
+  2x faster than bcrypt verify
 
-> Benchmarks are run on a MacBook Pro (16-inch, 2019) with 2.6 GHz Hexa-Core Intel i7-9750H and 16 GB 2666 MHz DDR4.
+> Benchmarks are run on a MacBook Pro (16-inch, 2019) with 2.6 GHz Hexa-Core
+> Intel i7-9750H and 16 GB 2666 MHz DDR4.
 
 ## API
 
