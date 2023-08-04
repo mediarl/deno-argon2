@@ -3,8 +3,8 @@
 	"tasks": {
 		"samples": "deno run -A --unstable ./examples/hash-with-options.ts && deno run -A --unstable ./examples/hash.ts && deno run -A --unstable ./examples/verify.ts",
 		"ok": "deno fmt --check && deno lint",
-		"test": "./test-with-local-build.sh",
-		"bench": "./bench-with-local-build.sh",
+		"test": "LOCAL=true deno test --allow-read --allow-write --allow-ffi --allow-run --allow-env --unstable tests/",
+		"bench": "LOCAL=true deno bench --allow-read --allow-write --allow-ffi --allow-run --allow-env --allow-net=deno.land --unstable benchmarks/",
 		"build": "cargo build --release"
 	},
 	"imports": {

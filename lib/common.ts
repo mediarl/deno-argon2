@@ -31,5 +31,5 @@ export interface HashOptions<T extends {} = {}> {
 }
 
 export function version() {
-	return "1.0.3";
+	return "1.0.4";
 }

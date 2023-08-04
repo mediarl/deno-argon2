@@ -2,18 +2,31 @@ import { HashOptions, MIN_SALT_SIZE, version } from "./common.ts";
 import { Argon2Error, Argon2ErrorType } from "./error.ts";
 import { dlopen, type FetchOptions } from "./deps.ts";
 
+const LOCAL = Deno.env.get("LOCAL");
+
+function getLocalUrl(): string {
+	const url = new URL("../target/release", import.meta.url);
+
+	let uri = url.pathname;
+	if (!uri.endsWith("/")) uri += "/";
+
+	// https://docs.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibrarya#parameters
+	if (Deno.build.os === "windows") {
+		uri = uri.replace(/\//g, "\\");
+		// Remove leading slash
+		if (uri.startsWith("\\")) {
+			uri = uri.slice(1);
+		}
+	}
+
+	return uri;
+}
+
 const FETCH_OPTIONS: FetchOptions = {
 	name: "deno_argon2",
-	url:
+	url: LOCAL ? getLocalUrl() :
 		`https://github.com/felix-schindler/deno-argon2/releases/download/v${version()}/`,
-	cache: "use",
-};
-
-// constant for local testing (please refer to "test-with-local-build.sh")
-const _FETCH_OPTIONS_FOR_DEV: FetchOptions = {
-	...FETCH_OPTIONS,
-	url: "./target/release/",
-	cache: "reloadAll",
+	cache: LOCAL ? "reloadAll" : "use",
 };
 
 const SYMBOLS = {
