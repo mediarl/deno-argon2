@@ -1,4 +1,4 @@
-import { hash, ThreadMode, verify } from "argon2_ffi";
+import { hash, ThreadMode, Variant, verify } from "argon2_ffi";
 import {
 	compare as bcryptCompare,
 	genSalt as bcryptGenSalt,
@@ -12,7 +12,7 @@ const hashed =
 
 // #region Argon2
 Deno.bench({
-	name: "hash",
+	name: "hash argon2i",
 	group: "hashing",
 	baseline: true,
 	async fn() {
@@ -21,7 +21,23 @@ Deno.bench({
 });
 
 Deno.bench({
-	name: "hash with random salt",
+	name: "hash argon2d",
+	group: "hashing",
+	async fn() {
+		await hash(password, { variant: Variant.Argon2d });
+	},
+});
+
+Deno.bench({
+	name: "hash argon2id",
+	group: "hashing",
+	async fn() {
+		await hash(password, { variant: Variant.Argon2id });
+	},
+});
+
+Deno.bench({
+	name: "hash with given salt",
 	group: "hashing-salt",
 	baseline: true,
 	async fn(b) {
@@ -35,7 +51,7 @@ Deno.bench({
 });
 
 Deno.bench({
-	name: "hash with random data, secret and salt",
+	name: "hash with given data, secret and salt",
 	group: "hashing",
 	async fn(b) {
 		const salt = crypto.getRandomValues(
@@ -95,7 +111,7 @@ Deno.bench({
 });
 
 Deno.bench({
-	name: "bcrypt hash with random salt",
+	name: "bcrypt hash with given salt",
 	group: "hashing-salt",
 	async fn(b) {
 		const salt = await bcryptGenSalt();
