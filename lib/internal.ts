@@ -24,8 +24,9 @@ function getLocalUrl(): string {
 
 const FETCH_OPTIONS: FetchOptions = {
 	name: "deno_argon2",
-	url: LOCAL ? getLocalUrl() :
-		`https://github.com/felix-schindler/deno-argon2/releases/download/v${version()}/`,
+	url: LOCAL
+		? getLocalUrl()
+		: `https://github.com/felix-schindler/deno-argon2/releases/download/v${version()}/`,
 	cache: LOCAL ? "reloadAll" : "use",
 };
 
