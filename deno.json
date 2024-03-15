@@ -1,5 +1,7 @@
 {
-	"lock": false,
+	"name": "@felix/argon2",
+	"version": "1.0.5",
+	"exports": "./mod.ts",
 	"tasks": {
 		"samples": "deno run -A --unstable ./examples/hash-with-options.ts && deno run -A --unstable ./examples/hash.ts && deno run -A --unstable ./examples/verify.ts",
 		"ok": "deno fmt --check && deno lint",
@@ -8,8 +10,9 @@
 		"build": "cargo build --release"
 	},
 	"imports": {
-		"argon2_ffi": "./mod.ts",
-		"std/": "https://deno.land/std@0.196.0/"
+		"@std/assert": "jsr:@std/assert@^0.219.1",
+		"@std/io": "jsr:@std/io@^0.219.1",
+		"argon2_ffi": "./mod.ts"
 	},
 	"fmt": {
 		"useTabs": true,

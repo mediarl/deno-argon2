@@ -1,9 +1,4 @@
 import { hash, ThreadMode, Variant, verify } from "argon2_ffi";
-import {
-	compare as bcryptCompare,
-	genSalt as bcryptGenSalt,
-	hash as bcryptHash,
-} from "https://deno.land/x/bcrypt@v0.4.1/mod.ts";
 
 const password =
 	"2gnF!WAcyhp#kB@tcYQa2$A%P64jEmXY!@8n2GSH$GggfgGfP*qH!EWwDaB%5mdB6pW2fK!KD@YNjvqwREfRCCAPc54c5@Sk";
@@ -97,36 +92,6 @@ Deno.bench({
 	baseline: true,
 	async fn() {
 		await verify(hashed, password);
-	},
-});
-// #endregion
-
-// #region Bcrypt
-Deno.bench({
-	name: "bcrypt hash",
-	group: "hashing",
-	async fn() {
-		await hash(password);
-	},
-});
-
-Deno.bench({
-	name: "bcrypt hash with given salt",
-	group: "hashing-salt",
-	async fn(b) {
-		const salt = await bcryptGenSalt();
-
-		b.start();
-		await bcryptHash(password, salt);
-		b.end();
-	},
-});
-
-Deno.bench({
-	name: "bcrypt verify",
-	group: "verifying",
-	async fn() {
-		await bcryptCompare(password, hashed);
 	},
 });
 // #endregion

@@ -31,7 +31,6 @@ hash with given data, secret and salt       8.74 ms/iter         114.5     (8.37
 hash with memoryCost set at 1024            2.27 ms/iter         440.3     (2.18 ms … 3.07 ms)   2.28 ms   2.61 ms    2.8 ms
 hash with timeCost set at 10               17.55 ms/iter          57.0    (16.8 ms … 18.33 ms)  17.89 ms  18.33 ms  18.33 ms
 hash with 16 lanes on sequential mode       9.18 ms/iter         108.9    (8.92 ms … 10.65 ms)   9.22 ms  10.65 ms  10.65 ms
-bcrypt hash                                 9.12 ms/iter         109.7     (8.72 ms … 10.1 ms)   9.35 ms   10.1 ms   10.1 ms
 
 summary
   hash argon2i

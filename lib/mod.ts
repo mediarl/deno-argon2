@@ -47,7 +47,7 @@ export * from "./error.ts";
 export function hash(
 	password: string,
 	options: Partial<HashOptions> = {},
-) {
+): Promise<string> {
 	return internal.hash(password, options);
 }
 
@@ -59,6 +59,6 @@ export function hash(
 export function verify(
 	hash: string,
 	password: string,
-) {
+): Promise<boolean> {
 	return internal.verify(hash, password);
 }

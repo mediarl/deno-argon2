@@ -13,7 +13,7 @@ export class Argon2Error extends Error {
 		super(message);
 	}
 
-	get name() {
+	get name(): string {
 		return `Argon2Error(${this.type})`;
 	}
 }

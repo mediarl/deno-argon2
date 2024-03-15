@@ -1,4 +1,4 @@
-import { assert, assertEquals, assertRejects } from "std/assert/mod.ts";
+import { assert, assertEquals, assertRejects } from "@std/assert";
 
 import { hash, Variant, verify, Version } from "argon2_ffi";
 

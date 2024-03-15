@@ -30,6 +30,6 @@ export interface HashOptions<T extends {} = {}> {
 	hashLength: number;
 }
 
-export function version() {
-	return "1.0.4";
+export function version(): string {
+	return "1.0.5";
 }

@@ -1,4 +1,4 @@
-import { readAll } from "std/streams/mod.ts";
+import { readAll } from "@std/io";
 
 const decoder = new TextDecoder();
 

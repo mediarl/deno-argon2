@@ -1,4 +1,4 @@
-import { assertThrows } from "std/assert/mod.ts";
+import { assertThrows } from "@std/assert";
 
 import { hash, Variant } from "argon2_ffi";
 import { assertArgon2Encoded } from "../lib/testing.ts";
