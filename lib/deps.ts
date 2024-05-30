@@ -1,4 +1,4 @@
 export {
 	dlopen,
 	type FetchOptions,
-} from "@denosaurs/plug";
+} from "jsr:@denosaurs/plug@^1.0.5";
